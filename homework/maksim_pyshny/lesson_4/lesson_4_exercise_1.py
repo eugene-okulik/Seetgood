@@ -20,7 +20,7 @@ my_dict['list'].append(100)
 my_dict['list'].pop(1)
 
 # Работа с ключом 'dict':
-my_dict['dict'].update({'i am a tuple': (200, 201, 202, 203, 204)})
+my_dict['dict'].update({('i am a tuple', ): 'new key'})
 my_dict['dict'].pop('key1')
 
 # Работа с ключом 'set':
