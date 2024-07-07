@@ -3,9 +3,9 @@ result_operation_2 = 'результат операции: 514'
 result_operation_3 = 'результат работы программы: 9'
 n = 10
 
-result_operation_1_index = result_operation_1.index('42')
-result_operation_2_index = result_operation_2.index('514')
-result_operation_3_index = result_operation_3.index('9')
+result_operation_1_index = result_operation_1.index(':') + 2
+result_operation_2_index = result_operation_2.index(':') + 2
+result_operation_3_index = result_operation_3.index(':') + 2
 
 number_1 = int(result_operation_1[result_operation_1_index:])
 number_2 = int(result_operation_2[result_operation_2_index:])
