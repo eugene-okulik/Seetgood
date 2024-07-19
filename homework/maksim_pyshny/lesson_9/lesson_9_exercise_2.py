@@ -7,6 +7,6 @@ list_hot_days = list(hot_days)
 average_temperature = sum(list_hot_days) // len(list_hot_days)
 
 print('Жаркие дни ', list_hot_days)
-print('Самая высокая температура ',max(list_hot_days))
+print('Самая высокая температура ', max(list_hot_days))
 print('Самая низкая температура ', min(list_hot_days))
 print('Средняя температура ', average_temperature)
