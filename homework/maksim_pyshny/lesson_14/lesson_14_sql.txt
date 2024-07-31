@@ -1,0 +1,44 @@
+# Создание студента
+INSERT INTO students (name, second_name, group_id) VALUES ('Dwayne', 'Johnson', 999)
+
+# Создание книг и указание, что ранее созданный студент их взял
+INSERT INTO books (title, taken_by_student_id) VALUES ('Robinson Crusoe', 1686)
+INSERT INTO books (title, taken_by_student_id) VALUES ('The Great Gatsby', 1686)
+
+# Создание группы
+INSERT INTO `groups` (title, start_date, end_date) VALUES ('Wrestling', '01-07-2024', '31-07-2024')
+
+# Распределение ранее созданного студента в группу которую мы создали
+UPDATE students SET group_id = '1602' WHERE id = 1686
+
+# Создание нескольких учебных предметов
+INSERT INTO subjets (title) VALUES ('Python'), ('Java')
+
+# Создание по 2 занятия для созданных выше предметов
+INSERT INTO lessons (title, subject_id) VALUES ('Functions', 2137), ('Classes', 2137)
+INSERT INTO lessons (title, subject_id) VALUES ('Specific Errors', 2138), ('Throwing Exceptions', 2138)
+
+# Выставление отметок
+INSERT INTO marks (value, lesson_id, student_id) VALUES ('9', 4732, 1686)
+INSERT INTO marks (value, lesson_id, student_id) VALUES ('8', 4733, 1686)
+INSERT INTO marks (value, lesson_id, student_id) VALUES ('7', 4734, 1686)
+INSERT INTO marks (value, lesson_id, student_id) VALUES ('9', 4735, 1686)
+
+# Получение всех оценок созданного студента
+SELECT students.name, students.second_name, marks.value, marks.lesson_id
+FROM students LEFT JOIN marks ON students.id = marks.student_id WHERE students.id = 1686
+
+# Вывести все книги, которые есть у созданного студента
+SELECT students.name, students.second_name, books.title
+FROM students LEFT JOIN books ON students.id = books.taken_by_student_id  WHERE students.id = 1686
+
+# Вывести для созданного студента все, что есть в базе
+SELECT students.name, students.second_name, `groups`.title, `groups`.start_date, `groups`.end_date,
+subjets.title, lessons.title, marks.value
+FROM students
+LEFT JOIN `groups` ON students.group_id = `groups`.id
+LEFT JOIN marks ON students.id = marks.student_id
+LEFT JOIN lessons ON marks.lesson_id = lessons.id
+LEFT JOIN subjets ON lessons.subject_id = subjets.id
+LEFT JOIN books ON students.id = books.taken_by_student_id
+WHERE students.id = 1686
