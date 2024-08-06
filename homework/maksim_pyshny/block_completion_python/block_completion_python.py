@@ -18,17 +18,21 @@ def main():
         file_text = os.path.join(file_path, file_name)
         if os.path.isfile(file_text):
             with open(file_text, 'r', encoding='utf-8') as file:
-                lines = file.readlines()
                 line_number = 0
-                for line in lines:
+                for line in file:
                     line_number += 1
                     if text_file in line:
                         found = True
                         print(f'Найдено в файле: {file_name}. Порядковый номер строки файла: {line_number}')
-                        index = line.find(text_file)
-                        start = max(0, index - 5)
-                        end = min(len(line), index + len(text_file) + 5)
-                        print(line[start:end])
+
+                        words = line.split()
+                        for index in range(len(words)):
+                            if text_file in words[index]:
+                                start = max(0, index - 5)
+                                end = min(len(words), index + 6)
+                                context = ' '.join(words[start:end])
+                                print(context)
+                        break
 
     if not found:
         print('Введенный текст не содержится в файлах с логами')
