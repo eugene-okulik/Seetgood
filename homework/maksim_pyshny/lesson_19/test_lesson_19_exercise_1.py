@@ -79,4 +79,3 @@ def test_add_object(test_progress, body):
     headers = {'Content-Type': 'application/json'}
     response = requests.post('https://api.restful-api.dev/objects', json=body, headers=headers)
     assert response.status_code == 200
-
