@@ -79,3 +79,8 @@ def test_add_object(test_progress, body):
     headers = {'Content-Type': 'application/json'}
     response = requests.post('https://api.restful-api.dev/objects', json=body, headers=headers)
     assert response.status_code == 200
+
+
+def test_delete_object(add_object, test_progress):
+    response = requests.delete(f'https://api.restful-api.dev/objects/{add_object}')
+    assert response.status_code == 200
